@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: starvocab-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/starvocab?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: root
+    password: "123456"
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+      continue-on-error: true
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# JWT 配置
+starvocab:
+  jwt:
+    secret: "StarVocab-Planet-Nebula-Secret-Key-2026-Purple-Cosmos-Encryption"
+    access-expire: 7200
+    refresh-expire: 604800
+  theme:
+    default: planet-deep-space
+    accent-color: "#bda7e2"
+    background: "#090a13"
+
+# Swagger 紫色主题
+springdoc:
+  swagger-ui:
+    title: StarVocab API · 星词星图
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  level:
+    com.starvocab: debug

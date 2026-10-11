@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "星词 · 从登录到复盘的接口调用",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [1080, 540]
+  },
+  "participants": [
+    {"id":"ui","type":"frontend","label":"React 页面","sublabel":"浏览器"},
+    {"id":"auth","type":"security","label":"认证接口","sublabel":"JWT"},
+    {"id":"orbit","type":"backend","label":"学习接口","sublabel":"/orbits"},
+    {"id":"test","type":"backend","label":"测验接口","sublabel":"/tests"},
+    {"id":"db","type":"database","label":"MySQL","sublabel":"持久数据"}
+  ],
+  "messages": [
+    {"from":"ui","to":"auth","y":165,"label":"POST /auth/login","variant":"security"},
+    {"from":"auth","to":"ui","y":200,"label":"返回 JWT","variant":"return"},
+    {"from":"ui","to":"orbit","y":240,"label":"GET /orbits/today","variant":"emphasis"},
+    {"from":"orbit","to":"ui","y":270,"label":"返回今日队列","variant":"return"},
+    {"from":"ui","to":"orbit","y":300,"label":"POST /orbits/review · rating 0-3","variant":"emphasis"},
+    {"from":"orbit","to":"db","y":330,"label":"写入 nextReview = 次日"},
+    {"from":"ui","to":"test","y":360,"label":"POST /tests · 创建测验","variant":"emphasis"},
+    {"from":"test","to":"ui","y":390,"label":"仅返回题目与选项","variant":"return"},
+    {"from":"ui","to":"test","y":420,"label":"POST /tests/{sessionId}/submit · 交卷","variant":"emphasis"},
+    {"from":"test","to":"ui","y":450,"label":"返回判分、正确答案与错题","variant":"return"}
+  ],
+  "cards": [
+    {"dot":"violet","title":"接口边界","items":["受保护接口携带 Bearer Token","创建测验时不下发标准答案"]},
+    {"dot":"emerald","title":"学习约定","items":["首次学习后安排次日复习","演示流程按文档目标绘制，学习与测验接口待实现"]}
+  ]
+}

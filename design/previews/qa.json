@@ -1,0 +1,57 @@
+{
+  "login": {
+    "desktop": {
+      "w": 1440,
+      "sw": 1440,
+      "h": 953
+    },
+    "mobile": {
+      "w": 390,
+      "sw": 390,
+      "h": 1133
+    }
+  },
+  "today": {
+    "desktop": {
+      "w": 1440,
+      "sw": 1440,
+      "h": 963
+    },
+    "mobile": {
+      "w": 390,
+      "sw": 390,
+      "h": 1489
+    }
+  },
+  "study": {
+    "desktop": {
+      "w": 1440,
+      "sw": 1440,
+      "h": 990
+    },
+    "mobile": {
+      "w": 390,
+      "sw": 390,
+      "h": 1099
+    }
+  },
+  "test": {
+    "desktop": {
+      "w": 1440,
+      "sw": 1440,
+      "h": 975
+    },
+    "mobile": {
+      "w": 390,
+      "sw": 390,
+      "h": 1074
+    }
+  },
+  "flow": {
+    "login": true,
+    "motion_toggle": true,
+    "reveal_rating": true,
+    "quiz_score": 100,
+    "page_errors": []
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "星词 · 六级备考工具目标架构",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [1120, 650]
+  },
+  "components": [
+    {"id":"learner","type":"external","label":"学习者","sublabel":"桌面 / 手机浏览器","pos":[48,288],"size":[145,76]},
+    {"id":"react","type":"frontend","label":"React 页面","sublabel":"登录 · 今日 · 学习 · 测试","pos":[282,288],"size":[184,76]},
+    {"id":"api","type":"backend","label":"Spring Boot API","sublabel":"认证 · 词库 · 学习 · 测验 · 统计","pos":[570,288],"size":[216,76]},
+    {"id":"jwt","type":"security","label":"JWT 校验","sublabel":"登录签发 / 受保护资源","pos":[570,108],"size":[216,72]},
+    {"id":"mysql","type":"database","label":"MySQL 8","sublabel":"词库 · 学习记录 · 测验","pos":[910,244],"size":[162,76]},
+    {"id":"redis","type":"database","label":"Redis","sublabel":"热点词库 · 今日队列缓存","pos":[910,440],"size":[162,76]}
+  ],
+  "connections": [
+    {"from":"learner","to":"react","label":"学习操作","variant":"emphasis"},
+    {"from":"react","to":"api","label":"/api/v1 · JSON","variant":"emphasis"},
+    {"from":"api","to":"jwt","label":"校验令牌","variant":"security","fromSide":"top","toSide":"bottom"},
+    {"from":"api","to":"mysql","label":"持久化","variant":"emphasis"},
+    {"from":"api","to":"redis","label":"缓存队列","variant":"dashed"}
+  ],
+  "cards": [
+    {"dot":"violet","title":"当前代码","items":["已有 React 登录页、首页与 Spring Boot 账户骨架","已配置 MySQL 与 JWT"]},
+    {"dot":"cyan","title":"文档目标","items":["学习、测验、统计和 Redis 按需求文档规划","本图展示目标连接，不代表所有模块已实现"]}
+  ]
+}

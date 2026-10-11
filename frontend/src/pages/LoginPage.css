@@ -1,0 +1,99 @@
+/* 登录页样式 —— 登录面板仿兽星 question-panel */
+.login-hero {
+  min-height: calc(100vh - 100px);
+}
+
+.login-panel {
+  margin-top: 33px;
+  padding: 32px 36px 28px;
+  border: 1px solid var(--line);
+  background: rgba(17, 15, 28, .76);
+  border-radius: 9px;
+  backdrop-filter: blur(6px);
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.login-label {
+  font-size: 14px;
+  color: #a495b7;
+  font-family: var(--utility-font);
+  letter-spacing: 1.5px;
+}
+
+.login-field input {
+  height: 46px;
+  padding: 0 14px;
+  background: rgba(25, 22, 36, .45);
+  border: 1px solid #332c40;
+  border-radius: 5px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+
+.login-field input::placeholder {
+  color: #5e536c;
+}
+
+.login-field input:hover {
+  background: rgba(41, 33, 53, .45);
+  border-color: #756083;
+}
+
+.login-field input:focus {
+  border-color: #ad91cb;
+  box-shadow: 0 0 0 2px rgba(173, 145, 203, .18);
+}
+
+.login-error {
+  margin: 2px 0 14px;
+  padding: 10px 14px;
+  font-size: 15px;
+  color: #e07b9b;
+  background: rgba(224, 123, 155, .08);
+  border: 1px solid rgba(224, 123, 155, .25);
+  border-radius: 5px;
+}
+
+.login-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 20px;
+  margin-top: 8px;
+}
+
+.login-actions .button-primary {
+  min-height: 48px;
+  padding: 12px 30px;
+  font-size: 17px;
+  letter-spacing: 4px;
+}
+
+.login-actions .button-text {
+  font-size: 15px;
+  min-height: 48px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 850px) {
+  .login-panel {
+    padding: 24px 22px;
+  }
+}
+
+@media (max-width: 620px) {
+  .login-panel {
+    margin-top: 26px;
+    padding: 22px 18px;
+  }
+  .login-actions .button-primary {
+    width: 100%;
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "星词 · 单词学习数据如何形成星图",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [1080, 540]
+  },
+  "stages": [
+    {"label":"词汇来源"},
+    {"label":"学习活动"},
+    {"label":"判定"},
+    {"label":"持久记录"},
+    {"label":"今日与复盘"}
+  ],
+  "nodes": [
+    {"id":"words","type":"database","label":"star_word","sublabel":"六级词库 / 真题频次","stage":0,"row":1,"width":130},
+    {"id":"card","type":"frontend","label":"单词卡","sublabel":"揭示 · 自评","stage":1,"row":0,"width":156},
+    {"id":"quiz","type":"frontend","label":"词汇测验","sublabel":"选择 / 拼写","stage":1,"row":2,"width":156},
+    {"id":"sm2","type":"backend","label":"间隔计算","sublabel":"评分 0-3 · 首次次日","stage":2,"row":0,"width":156},
+    {"id":"score","type":"backend","label":"服务端判分","sublabel":"作答后给解析","stage":2,"row":2,"width":156},
+    {"id":"orbit","type":"database","label":"orbit_record","sublabel":"掌握度 / next_review","stage":3,"row":0,"width":156},
+    {"id":"session","type":"database","label":"test_session","sublabel":"分数 / 错题 / 用时","stage":3,"row":2,"width":156},
+    {"id":"today","type":"backend","label":"今日队列","sublabel":"新词 + 到期复习","stage":4,"row":0,"width":156},
+    {"id":"nebula","type":"backend","label":"nebula_stats","sublabel":"学习日历 / 星图","stage":4,"row":2,"width":156}
+  ],
+  "flows": [
+    {"from":"words","to":"card","label":"词义、音标、例句","variant":"emphasis"},
+    {"from":"words","to":"quiz","label":"题目候选","variant":"default"},
+    {"from":"card","to":"sm2","label":"自评评分","variant":"emphasis"},
+    {"from":"quiz","to":"score","label":"用户答案","variant":"emphasis"},
+    {"from":"sm2","to":"orbit","label":"复习间隔","variant":"emphasis"},
+    {"from":"score","to":"session","label":"分数与错题","variant":"emphasis"},
+    {"from":"orbit","to":"today","label":"到期记录","variant":"emphasis","route":"straight"},
+    {"from":"session","to":"nebula","label":"测试表现","variant":"default","labelAt":[928,428]},
+    {"from":"orbit","to":"nebula","label":"学习统计","variant":"default","labelAt":[855,270]}
+  ],
+  "cards": [
+    {"dot":"violet","title":"来源","items":["规划流程：star_word 等业务表尚未建立","标准答案只在服务端参与判分"]},
+    {"dot":"cyan","title":"去向","items":["next_review 按日期进入次日队列","学习记录与测试表现形成进度星图"]}
+  ]
+}
